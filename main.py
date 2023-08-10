@@ -23,8 +23,7 @@ def translate(text, tl, sl):
     )
     data = resp.json()
     return data
-target_lang_id=''
-source_text_id=''
+
 @app.get("/translate")
 async def translate_text(text: str = Query(..., min_length=1, max_length=500), target_lang: str = Query(...), source_lang: str = Query(...)):
     if len(text) > 500:
@@ -78,11 +77,3 @@ async def translate_text(text: str = Query(..., min_length=1, max_length=500), t
     return {"source": text, "target": target_text}
 
 
-#
-# app = FastAPI()
-#
-# @app.get("/test")
-# def test(text, tl):
-#     out = translate(text, tl)
-#     print(out)
-#     return {'translate': out[0]}
